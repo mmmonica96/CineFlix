@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #f4f1f5;
+    padding: 1rem 0;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
