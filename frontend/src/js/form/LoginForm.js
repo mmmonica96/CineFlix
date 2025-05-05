@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../../css/Form/LoginForm.css';
+
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const response = await fetch('http://localhost/cineflix/CineFlix/backend/php/login.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
 
-    navigate('/'); 
+    const result = await response.json();
+
+    if (result.success) {
+      navigate('/'); // Ruta al componente Init.js (usa React Router)
+    } else {
+      alert(result.message || 'Error al iniciar sesión');
+    }
   };
 
   return (
@@ -47,3 +59,4 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
