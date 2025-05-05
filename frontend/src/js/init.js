@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Banner from './components/Banner';
 import MovieCard from './components/MovieCard';
 import LoginForm from './form/LoginForm';
+import RegisterForm from './register/RegisterForm';
+
 
 function Init() {
   return (
@@ -17,7 +19,8 @@ function Init() {
             <MovieCard titulo="Título" descripcion="Descripción" />
             <MovieCard titulo="Título" descripcion="Descripción" />
           </div>} />
-          <Route path="/login" element={<LoginForm />} /> {/* Ruta para el formulario de login */}
+          <Route path="/login" element={<LoginForm />} /> 
+          <Route path="/registro" element={<RegisterForm />} />
         </Routes>
       </div>
     </Router>
