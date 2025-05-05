@@ -17,6 +17,7 @@ function Init() {
             <MovieCard titulo="Título" descripcion="Descripción" />
             <MovieCard titulo="Título" descripcion="Descripción" />
           </div>} />
+          <Route path="/" element={<Init />} /> {/* Ruta para el formulario de inicio */}
           <Route path="/login" element={<LoginForm />} /> {/* Ruta para el formulario de login */}
         </Routes>
       </div>
