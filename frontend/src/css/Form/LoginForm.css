@@ -3,16 +3,14 @@
     width: 300px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    border: 2px solid #af4c91; /* Borde más suave */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    background-color: #f4f4f4; 
+    border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .login-container:hover {
-    box-shadow: 0 8px 25px rgba(175, 76, 145, 0.3); /* Sombras más notorias al pasar el mouse */
-    transform: translateY(-5px); /* Movimiento sutil */
+    box-shadow: 0 8px 25px rgba(175, 76, 145, 0.3);
+    transform: translateY(-5px); 
   }
   
   h2 {
