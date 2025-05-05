@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
-import '../../css/Register/RegisterForm.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../css/Register/RegisterForm.css";
 
 function RegisterForm() {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('Registro:', { email, username, password });
+    try {
+      const response = await fetch(
+        "http://localhost/cineflix/backend/php/register.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, name, password }),
+        }
+      );
 
+      const result = await response.json();
+
+      if (result.success) {
+        navigate("/");
+      } else {
+        alert(result.message || "Error al registrarse");
+      }
+    } catch (error) {
+      console.error("Error al conectar con el backend:", error);
+      alert("No se pudo conectar con el servidor.");
+    }
   };
 
   return (
@@ -21,7 +44,7 @@ function RegisterForm() {
           <label>Nombre de usuario</label>
           <input
             type="text"
-            value={username}
+            value={name}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Tu nombre de usuario"
             required
