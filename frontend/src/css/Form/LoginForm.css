@@ -1,48 +1,88 @@
 
-.login-container {
+  .login-container {
     width: 300px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 2px solid #af4c91; /* Borde más suave */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .login-container:hover {
+    box-shadow: 0 8px 25px rgba(175, 76, 145, 0.3); /* Sombras más notorias al pasar el mouse */
+    transform: translateY(-5px); /* Movimiento sutil */
   }
   
   h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #7a2f4e;
+    font-size: 1.8em;
+    font-weight: bold;
   }
   
   .form-group {
     margin-bottom: 15px;
+    opacity: 0;
+    animation: slideUp 0.5s ease forwards;
+  }
+  
+  .form-group:nth-child(1) { animation-delay: 0.1s; }
+  .form-group:nth-child(2) { animation-delay: 0.2s; }
+  .form-group:nth-child(3) { animation-delay: 0.3s; }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    color: #444;
+    font-weight: bold;
   }
   
   input {
     width: 100%;
-    padding: 8px;
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    padding-top: 20px;
+    border-radius: 6px;
+    transition: border 0.3s, box-shadow 0.3s, background-color 0.3s;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #af4c91; /* Suave cambio de color */
+    box-shadow: 0 0 8px rgba(175, 76, 145, 0.4); /* Sombra neón suave */
+    background-color: #fff;
   }
   
   button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #af4c91;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
   }
   
   button:hover {
-    background-color: #d162ac;
+    background-color: #d162ac; /* Color más suave en hover */
+    transform: scale(1.02);
   }
   
