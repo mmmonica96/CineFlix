@@ -15,6 +15,7 @@ function Init() {
       <div className="App">
         <Banner />
         <Navbar />
+<<<<<<< HEAD
         <Routes>
           {" "}
           {/* Definimos las rutas */}
@@ -33,6 +34,18 @@ function Init() {
           {/* Ruta para el formulario de inicio */}
           <Route path="/login" element={<LoginForm />} />{" "}
           {/* Ruta para el formulario de login */}
+=======
+        <Routes> {/* Definimos las rutas */}
+          <Route path="/" element={<div className="movie-grid">
+            <MovieCard titulo="Título" descripcion="Descripción" />
+            <MovieCard titulo="Título" descripcion="Descripción" />
+          </div>} />
+
+          <Route path="/registro" element={<RegisterForm />} />
+          <Route path="/" element={<Init />} /> {/* Ruta para el formulario de inicio */}
+          <Route path="/login" element={<LoginForm />} /> {/* Ruta para el formulario de login */}
+
+>>>>>>> origin/carmen
         </Routes>
       </div>
     </Router>
