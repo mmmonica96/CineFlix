@@ -13,15 +13,13 @@ function RegisterForm() {
 
     try {
       const response = await fetch(
-        "http://localhost/cineflix/backend/php/register.php",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, name, password }),
-        }
-      );
+        "http://localhost/cineflix/CineFlix/backend/php/register.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, password })
+      })
 
       const result = await response.json();
 
