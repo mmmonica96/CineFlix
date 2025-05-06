@@ -7,6 +7,12 @@ session_start();
 
 include '../connection/db.php';
 // Manejo de preflight
+
+session_start();
+include '../connection/db.php';
+
+//pre-flight OPTIONS management
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
     exit;
@@ -29,7 +35,6 @@ if ($conn->connect_error) {
     echo json_encode(["success" => false, "message" => "Error de conexión"]);
     exit;
 }
-
 $sql = "INSERT INTO users (email, name, password) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $email, $name, $password);
