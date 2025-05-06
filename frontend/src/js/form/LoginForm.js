@@ -11,7 +11,7 @@ function LoginForm() {
     e.preventDefault();
 
     const response = await fetch(
-      "http://localhost/cineFlix/backend/php/login.php",
+      "http://localhost/cineflix/backend/php/login.php",
       {
         method: "POST",
         headers: {
