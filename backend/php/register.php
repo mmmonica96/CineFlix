@@ -1,18 +1,18 @@
 <?php
-//enable CORS before any output
-header("Access-Control-Allow-Origin: *");
+// Permitir CORS siempre
+header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+session_start();
 
-//pre-flight options management
+include '../connection/db.php';
+// Manejo de preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
     exit;
 }
 
-header("Content-Type: application/json");
-
-//json
+// JSON input
 $data = json_decode(file_get_contents("php://input"), true);
 
 $email = $data['email'] ?? '';
@@ -29,7 +29,7 @@ if ($conn->connect_error) {
     echo json_encode(["success" => false, "message" => "Error de conexión"]);
     exit;
 }
-//inserts
+
 $sql = "INSERT INTO users (email, name, password) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $email, $name, $password);
@@ -42,3 +42,4 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
+?>
