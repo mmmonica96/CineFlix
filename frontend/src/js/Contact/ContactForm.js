@@ -1,12 +1,11 @@
-<<<<<<<< HEAD:frontend/src/js/Contact/Contact.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/Contact.css';
-========
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/Contact.css";
->>>>>>>> origin/monica:frontend/src/js/Contact/ContactForm.js
+
 
 function ContactForm() {
   const [name, setName] = useState("");
