@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
-import '../../css/Contact.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../css/Contact.css";
 
 function ContactForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost/cineflix/CineFlix/backend/php/contact.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, message })
-      });
+      const response = await fetch(
+        "http://localhost/cineflix/backend/php/contact.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, message }),
+        }
+      );
 
       const result = await response.json();
 
       if (result.success) {
-        alert('Mensaje enviado correctamente');
-        setName('');
-        setEmail('');
-        setMessage('');
+        alert("Mensaje enviado correctamente");
+        setName("");
+        setEmail("");
+        setMessage("");
+        navigate("/");
       } else {
-        alert(result.message || 'Error al enviar el mensaje');
+        alert(result.message || "Error al enviar el mensaje");
       }
     } catch (error) {
-      alert('Error de conexión: ' + error.message);
+      console.error("Error al conectar con el backend:", error);
+      alert("No se pudo conectar con el servidor.");
     }
   };
 

@@ -6,6 +6,7 @@ import Banner from "./components/Banner";
 import MovieCard from "./components/MovieCard";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./register/RegisterForm";
+import ContactForm from "./Contact/ContactForm";
 
 function Init() {
   return (
@@ -26,6 +27,7 @@ function Init() {
           />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/registro" element={<RegisterForm />} />
+          <Route path="/contacto" element={<ContactForm />} />
         </Routes>
       </div>
     </Router>
