@@ -27,6 +27,6 @@ if ($result->num_rows === 1) {
     $_SESSION['user'] = $email;
     echo json_encode(["success" => true]);
 } else {
-    echo json_encode(["success" => false, "message" => "Credenciales inválidas."]);
+    echo json_encode(["success" => false, "message" => "Email o contraseña incorrectos."]);
 }
 ?>
