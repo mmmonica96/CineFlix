@@ -1,12 +1,16 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-$password = ''; // Cambia si tu MySQL tiene contraseña
+$password = '';
 $dbname = 'cineflix';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Error de conexión: " . $conn->connect_error);
 }
-?>
+
+//form data
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+
