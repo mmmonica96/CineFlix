@@ -23,7 +23,7 @@ export default function Navbar() {
         {/* Navigation menu */}
         <ul className={`navbar-list ${menuActive ? 'active' : ''}`}>
           <li><Link to="/" onClick={closeMenu}>Inicio</Link></li>
-          <li><Link to="/recomendaciones" onClick={closeMenu}>Recomendaciones</Link></li>
+          <li><Link to="/preferencias" onClick={closeMenu}>Preferencias</Link></li>
           <li className="dropdown">
             <span className="dropbtn">Contenido</span>
             <ul className="dropdown-content">

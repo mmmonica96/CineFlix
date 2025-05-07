@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "../css/faq.css";
+import "../css/faq.css";
 
 function FAQ() {
   const faqs = [
@@ -46,10 +46,13 @@ function FAQ() {
             }
           >
             {faq.question}
+            <span className={`arrow ${visibleIndex === index ? "open" : ""}`}>
+              ▼
+            </span>
           </div>
-          {visibleIndex === index && (
-            <div className="faq-answer">{faq.answer}</div>
-          )}
+          <div className={`faq-answer ${visibleIndex === index ? "open" : ""}`}>
+            {faq.answer}
+          </div>
         </div>
       ))}
     </div>
