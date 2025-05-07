@@ -1,0 +1,134 @@
+/*style for the sidebar button*/
+.btn-global-config {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(145, 18, 88, 0.795);
+  border: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  z-index: 1000;
+  max-width: 150px;
+  justify-content: center;
+}
+
+/*style for configuration options */
+.opcion-config {
+  display: block;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+/*global style for dark mode */
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+/*dark mode background and text for the main container */
+.dark-mode .home-page {
+  background-color: #121212;
+  color: white;
+}
+
+/*titles and descriptions in dark mode */
+.dark-mode .home-title,
+.dark-mode .home-description {
+  color: #f1f1f1;
+}
+
+/*style the movie carousel section in dark mode */
+.dark-mode .movie-carousel .movie-cards {
+  background-color: #1e1e1e;
+}
+
+/*for navigation buttons in dark mode */
+.dark-mode .carousel-controls-side button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dark-mode .carousel-controls-side button:hover {
+  background-color: #555;
+}
+
+/*for genre sections in dark mode */
+.dark-mode .seccion-generos {
+  background-color: #1e1e1e;
+}
+
+/*for genre titles in dark mode */
+.dark-mode .genero-titulo {
+  color: #f1f1f1;
+}
+
+/*top 10 in dark mode*/
+.dark-mode .top-10-section {
+  background-color: #1e1e1e;
+  padding: 15px;
+}
+
+.dark-mode .top-10-list {
+  list-style: none;
+  padding: 0;
+}
+
+.dark-mode .top-10-list li {
+  color: #f1f1f1;
+  padding: 5px 0;
+}
+
+/*contrast in dark mode */
+.dark-mode .ranking-number {
+  color: #ffd700;
+}
+
+/*movies section in dark mode */
+.dark-mode .carousel-item .movie-card {
+  background-color: #2b2b2b;
+  color: #f1f1f1;
+}
+
+.dark-mode .movie-card .titulo {
+  color: #f1f1f1;
+}
+/*description */
+.dark-mode .movie-card .descripcion {
+  color: #b3b3b3;
+}
+
+/*style of each genre (action and fantasy) */
+.dark-mode .movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.dark-mode .movie-card {
+  background-color: #2b2b2b;
+  color: #f1f1f1;
+}
+
+/*action and fantasy */
+.dark-mode .seccion-generos .accion .movie-card {
+  background-color: #3a3a3a;
+}
+
+.dark-mode .seccion-generos .fantasia .movie-card {
+  background-color: #2c3e50;
+}
+
+/*titles in the action and fantasy genres */
+.dark-mode .seccion-generos .accion .genero-titulo {
+  color: #ff6f61;
+}
+/*dark mode for fantasy */
+.dark-mode .seccion-generos .fantasia .genero-titulo {
+  color: #8e44ad;
+}
