@@ -5,16 +5,10 @@ header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 session_start();
-<<<<<<< HEAD
-
 include '../connection/db.php';
 
-//pre-flight options management
-=======
-include '../connection/db.php';
 
 //pre-flight OPTIONS management
->>>>>>> origin/monica
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
     exit;
@@ -39,13 +33,9 @@ if ($conn->connect_error) {
     echo json_encode(["success" => false, "message" => "Error de conexión"]);
     exit;
 }
-<<<<<<< HEAD
+
 //inserts
 $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-=======
-//inse
-$sql = "INSERT INTO users (email, name, password) VALUES (?, ?, ?)";
->>>>>>> origin/monica
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $email, $name, $password);
 
