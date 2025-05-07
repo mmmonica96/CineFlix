@@ -7,6 +7,9 @@ import RegisterForm from "./register/RegisterForm";
 import HomePage from './home/HomePage'; // Importamos la página de inicio
 import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
+import PreferencesPage from "./preferences/preferencias";
+import ConfiguracionSidebar from './components/ConfiguracionSideBar';
+
 
 
 function Init() {
@@ -15,9 +18,10 @@ function Init() {
       <div className="App">
         <Banner />
         <Navbar />
-
+<ConfiguracionSidebar/>
         <Routes>
         <Route path="/" element={<HomePage />} /> 
+        <Route path="/preferences" element={<PreferencesPage />} /> 
           <Route path="/login" element={<LoginForm />} />
           <Route path="/registro" element={<RegisterForm />} />
           <Route path="/contacto" element={<ContactForm />} />
