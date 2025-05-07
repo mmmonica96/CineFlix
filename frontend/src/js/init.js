@@ -25,7 +25,7 @@ function Init() {
           <Route path="/registro" element={<RegisterForm />} />
           <Route path="/contacto" element={<ContactForm />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/content" element={<Content />} />
+          <Route path="/series" element={<Content />} />
         </Routes>
       </div>
     </Router>
