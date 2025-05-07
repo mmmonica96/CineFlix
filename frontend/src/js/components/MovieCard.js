@@ -3,13 +3,16 @@ import React from 'react';
 import '../../css/MovieCard.css';
 
 
-export default function MovieCard({ titulo, descripcion }) {
+function MovieCard({ titulo, descripcion, imagen }) {
   return (
     <div className="movie-card">
       <h3>{titulo}</h3>
-      <div className="movie-img" />
+      <img src={imagen} alt={titulo} className="movie-img" />
       <p>{descripcion}</p>
-      <p className="comentarios">Comentarios</p>
+      <button className="comentarios-btn">Comentarios</button>
     </div>
   );
 }
+
+export default MovieCard;
+

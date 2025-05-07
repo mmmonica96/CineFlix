@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../../css/Contact.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../../css/Contact.css';
+
 
 function ContactForm() {
   const [name, setName] = useState("");

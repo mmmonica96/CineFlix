@@ -1,13 +1,13 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 * {
+  font-family: 'Nunito', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
 .navbar {
-  background-color: rgba(145, 18, 88, 0.795); 
+  background-color: rgba(145, 18, 88, 0.795);
   padding: 8px 16px;
   position: sticky;
   top: 0;
@@ -19,47 +19,57 @@
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 .navbar-container {
   width: 100%;
   max-width: 1000px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-/* Título / Logo */
 .navbar h1 {
   font-size: 20px;
   color: white;
   font-weight: bold;
 }
 
-/* Menú principal */
-.navbar ul {
+.navbar-list {
   list-style: none;
   display: flex;
   align-items: center;
 }
 
-/* Ítems del menú */
-.navbar ul li a{
+.navbar-list li a {
   margin: 0 10px;
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  color: #d8d5d5;
+  text-decoration: none;
   transition: color 0.3s ease;
-  color: #d8d5d5; 
 }
 
-.navbar ul li:hover {
-  color: white; 
+.navbar-list li:hover a {
+  color: white;
 }
-
 
 .dropdown {
   position: relative;
+}
+
+.dropbtn {
+  margin: 0 10px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #d8d5d5;
+  transition: color 0.3s ease;
+}
+
+.dropdown:hover .dropbtn {
+  color: white;
 }
 
 .dropdown-content {
@@ -67,31 +77,35 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background-color:rgba(145, 18, 88, 0.795); 
+  background-color: rgba(145, 18, 88, 0.795);
   min-width: 120px;
-  box-shadow: 0 8px 25px rgba(145, 18, 88, 0.795); 
+  box-shadow: 0 8px 25px rgb(145, 18, 88);
   border-radius: 4px;
   overflow: hidden;
   z-index: 1000;
+  list-style: none;
 }
 
 .dropdown-content li {
   padding: 8px 12px;
   font-size: 14px;
-  color: #444;
+  color: #d8d5d5;
   white-space: nowrap;
 }
 
 .dropdown-content li:hover {
-  background-color: rgba(209, 144, 180, 0.288); 
-  color: #d81b60;
+  background-color: rgba(114, 27, 75, 0.849);
+}
+
+.dropdown-content li:hover a {
+  color: white;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Menú móvil */
+/* Hamburger icon */
 .navbar .menu-toggle {
   display: none;
   font-size: 24px;
@@ -99,49 +113,57 @@
   color: rgb(247, 244, 244);
 }
 
-/* Responsive */
+/* Mobile menu */
 @media (max-width: 768px) {
-  .navbar-container {
-    flex-direction: column;
-    align-items: center;
+  .navbar {
+    height: auto;
   }
-
-  .navbar ul {
+  
+  .navbar-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .navbar-list {
+    display: none;
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 50px;
+    top: 45px;
     left: 0;
     right: 0;
-    background-color: #d81b60;
-    height: 100vh;
-    display: none;
+    background-color: rgba(145, 18, 88, 0.795);
+    height: auto;
+    padding: 20px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
-  .navbar.active ul {
+  .navbar.active .navbar-list {
     display: flex;
   }
 
-  .navbar ul li {
-    margin: 16px 0;
+  .navbar-list li {
+    margin: 10px 0;
   }
 
   .navbar .menu-toggle {
     display: block;
-    margin-top: 8px;
   }
 
   .dropdown-content {
     position: static;
     box-shadow: none;
     background-color: transparent;
-  }
-
-  .dropdown-content li {
-    color: rgb(107, 50, 101);
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
   }
 
   .dropdown:hover .dropdown-content {
     display: none;
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
   }
 }
