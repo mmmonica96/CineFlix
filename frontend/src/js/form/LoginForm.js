@@ -24,7 +24,7 @@ function LoginForm() {
     const result = await response.json();
 
     if (result.success) {
-      navigate("/"); // Ruta al componente Init.js (usa React Router)
+      navigate("/"); // Path to Init.js component (uses React Router)
     } else {
       alert(result.message || "Error al iniciar sesión");
     }

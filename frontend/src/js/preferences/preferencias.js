@@ -22,7 +22,7 @@ export default function PreferencesPage() {
         ? prev.filter(g => g !== nombre)
         : [...prev, nombre]
     );
-    setGuardado(false); // Oculta mensaje si se cambia algo
+    setGuardado(false); // Hide message if changes anything
   };
 
   const guardarPreferencias = () => {
@@ -33,7 +33,7 @@ export default function PreferencesPage() {
     setGuardado(true);
   };
 
-  // Ocultar mensaje tras 5 segundos
+  // Hide message after 5 seconds
   useEffect(() => {
     if (guardado) {
       const timer = setTimeout(() => setGuardado(false), 5000);
