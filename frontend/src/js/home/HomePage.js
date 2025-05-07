@@ -39,7 +39,7 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="banner">
-        <h1 className="home-title">Bienvenido a MovieFlix</h1>
+        <h1 className="home-title">Bienvenido a CineFlix</h1>
         <p className="home-description">La mejor plataforma para ver películas y series en línea.</p>
 <br></br>
 <br></br>
