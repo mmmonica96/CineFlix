@@ -1,112 +1,161 @@
 import '../css/content.css';
 
+// Array of movies with title, description, and image path
 const peliculas = [
     {
       titulo: 'La Monja',
-      descripcion: 'Una entidad demoníaca ataca en un convento.',
-      imagen: 'img/cr7.jpg'
+      descripcion: 'A demonic entity attacks a convent.',
+      imagen: 'img/nun.jpg'
     },
     {
       titulo: 'Forrest Gump',
-      descripcion: 'Un hombre con bajo coeficiente narra su vida.',
+      descripcion: 'A man with a low IQ narrates his life.',
       imagen: 'img/forrest_gump.jpg'
     },
     {
       titulo: 'Cadena perpetua',
-      descripcion: 'Un banquero es acusado injustamente.',
+      descripcion: 'A banker is wrongly convicted.',
       imagen: 'img/shawshank.jpg'
     },
     {
       titulo: 'Titanic',
-      descripcion: 'Un romance trágico en un barco legendario.',
+      descripcion: 'A tragic romance aboard a legendary ship.',
       imagen: 'img/titanic.jpg'
     },
     {
       titulo: 'La lista de Schindler',
-      descripcion: 'Un empresario salva a judíos en la Segunda Guerra.',
+      descripcion: 'A businessman saves Jews during WWII.',
       imagen: 'img/schindler.jpg'
     },
     {
       titulo: 'Indiana Jones',
-      descripcion: 'Un arqueólogo vive aventuras extraordinarias.',
+      descripcion: 'An archaeologist goes on extraordinary adventures.',
       imagen: 'img/indiana_jones.jpg'
     },
     {
       titulo: 'Jumanji',
-      descripcion: 'Un juego mágico cobra vida.',
+      descripcion: 'A magical game comes to life.',
       imagen: 'img/jumanji.jpg'
     },
     {
       titulo: 'Piratas del Caribe',
-      descripcion: 'Un pirata busca tesoros y libertad.',
+      descripcion: 'A pirate seeks treasure and freedom.',
       imagen: 'img/pirates.jpg'
     },
     {
       titulo: 'Viaje al centro de la Tierra',
-      descripcion: 'Una expedición explora un mundo subterráneo.',
+      descripcion: 'An expedition explores a subterranean world.',
       imagen: 'img/journey_earth.jpg'
     },
     {
       titulo: 'Your Name',
-      descripcion: 'Dos adolescentes intercambian cuerpos.',
+      descripcion: 'Two teenagers swap bodies.',
       imagen: 'img/your_name.jpg'
     },
     {
       titulo: 'El viaje de Chihiro',
-      descripcion: 'Una niña entra en el mundo espiritual.',
+      descripcion: 'A girl enters a spiritual world.',
       imagen: 'img/chihiro.jpg'
     },
     {
       titulo: 'Akira',
-      descripcion: 'Un joven adquiere poderes devastadores.',
+      descripcion: 'A young man gains devastating powers.',
       imagen: 'img/akira.jpg'
     },
     {
       titulo: 'Naruto: La Película',
-      descripcion: 'Ninjas enfrentan una nueva amenaza.',
+      descripcion: 'Ninjas face a new threat.',
       imagen: 'img/naruto_movie.jpg'
     }
 ];
   
+// Create container for movies
+const contenedor = document.createElement('div');
+contenedor.classList.add('peliculas-container');
+document.body.appendChild(contenedor);
   
-// Crear contenedor
-  const contenedor = document.createElement('div');
-  contenedor.className = 'peliculas-container';
-  document.body.appendChild(contenedor);
-  
-// Crear modal
-  const modal = document.createElement('div');
-  modal.className = 'modal';
-  modal.innerHTML = `
-    <div class="modal-content">
-      <span class="cerrar">&times;</span>
-      <h2 id="modal-titulo"></h2>
-      <img id="modal-imagen" class="modal-imagen" />
-      <p id="modal-descripcion"></p>
-    </div>
-  `;
+// Create the modal for showing movie details
+ const modal = crearModal();
 document.body.appendChild(modal);
   
-// Cerrar modal
-  modal.querySelector('.cerrar').onclick = () => modal.style.display = 'none';
-  window.onclick = (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-};
+// Function to create modal
+function crearModal() {
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    
+    const closeBtn = document.createElement('span');
+    closeBtn.classList.add('cerrar');
+    closeBtn.innerHTML = '&times;';
+    
+    const modalTitle = document.createElement('h2');
+    const modalDescription = document.createElement('p');
+    const modalImage = document.createElement('img');
+    modalImage.classList.add('modal-imagen');
+    
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(modalTitle);
+    modalContent.appendChild(modalImage);
+    modalContent.appendChild(modalDescription);
+    modal.appendChild(modalContent);
   
-// Crear tarjetas
-  peliculas.forEach(pelicula => {
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'pelicula';
-    tarjeta.innerHTML = `
-      <img src="${pelicula.imagen}" alt="${pelicula.titulo}" class="pelicula-imagen" />
-      <h3>${pelicula.titulo}</h3>
-    `;
-    tarjeta.onclick = () => {
-      document.getElementById('modal-titulo').textContent = pelicula.titulo;
-      document.getElementById('modal-descripcion').textContent = pelicula.descripcion;
-      document.getElementById('modal-imagen').src = pelicula.imagen;
-      modal.style.display = 'block';
+// Close modal when the close button is clicked
+closeBtn.onclick = () => {
+    modal.style.display = 'none';
+};
+    
+// Close modal if clicked outside of the modal
+window.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
     };
+    
+    return modal;
+}
+  
+// Function to create and add movie cards to the container
+function crearTarjeta(pelicula) {
+    const tarjeta = document.createElement('div');
+    tarjeta.classList.add('pelicula');
+    
+    const imagen = document.createElement('img');
+    imagen.src = pelicula.imagen; // Image path
+    imagen.alt = pelicula.titulo;
+    imagen.classList.add('pelicula-imagen');
+    
+    const titulo = document.createElement('h3');
+    titulo.textContent = pelicula.titulo;
+    
+// Open modal with movie details when the card is clicked
+tarjeta.onclick = () => {
+      mostrarDetalles(pelicula);
+};
+    
+    tarjeta.appendChild(imagen);
+    tarjeta.appendChild(titulo);
+    
     contenedor.appendChild(tarjeta);
+}
+  
+// Function to show movie details in the modal
+function mostrarDetalles(pelicula) {
+    const modal = document.querySelector('.modal');
+    const modalTitle = modal.querySelector('h2');
+    const modalDescription = modal.querySelector('p');
+    const modalImage = modal.querySelector('.modal-imagen');
+    
+    modalTitle.textContent = pelicula.titulo;
+    modalDescription.textContent = pelicula.descripcion;
+    modalImage.src = pelicula.imagen;
+    
+    modal.style.display = 'block';  // Display modal
+}
+  
+// Create movie cards for all movies
+peliculas.forEach(pelicula => {
+    crearTarjeta(pelicula);
 });
   
