@@ -9,6 +9,7 @@ import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
 import PreferencesPage from "./preferences/preferencias";
 import ConfigurationSideBar from "./components/configurationSideBar";
+import Content from "./content";
 
 function Init() {
   return (
@@ -24,6 +25,7 @@ function Init() {
           <Route path="/registro" element={<RegisterForm />} />
           <Route path="/contacto" element={<ContactForm />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/content" element={<Content />} />
         </Routes>
       </div>
     </Router>
