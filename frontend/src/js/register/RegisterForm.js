@@ -19,9 +19,9 @@ function RegisterForm() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, name, password }),
+          body: JSON.stringify({ name, email, password }),
         }
-      );origin/carmen
+      );
 
       const result = await response.json();
 
