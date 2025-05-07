@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import '../../css/ConfiguracionSideBar.css';
+import React, { useState, useEffect } from "react";
+import "../../css/configurationSideBar.css";
 
 export default function ConfiguracionSidebar() {
   const [mostrar, setMostrar] = useState(false);
   const [modoOscuro, setModoOscuro] = useState(false);
-  const [idioma, setIdioma] = useState('es');
+  const [idioma, setIdioma] = useState("es");
 
   // Al montar el componente, verificamos el estado del modo oscuro desde localStorage
   useEffect(() => {
