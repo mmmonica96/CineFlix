@@ -1,5 +1,7 @@
+// Import CSS file for styles
 import '../css/series.css';
 
+// Array of series with title, description and image
 const series = [
     {
       titulo: 'Outlander',
@@ -78,14 +80,17 @@ const series = [
     }
   ];
   
+// Create container for series cards
   const contenedor = document.createElement('div');
   contenedor.classList.add('series-container');
   document.body.appendChild(contenedor);
-  
+
+// Create modal for details
   const modal = crearModal();
   document.body.appendChild(modal);
-  
-  function crearModal() {
+
+// Function to create the modal element
+function crearModal() {
     const modal = document.createElement('div');
     modal.classList.add('modal');
   
@@ -102,16 +107,19 @@ const series = [
     const modalImage = document.createElement('img');
     modalImage.classList.add('modal-imagen');
   
+// Add all elements to modal content    
     modalContent.appendChild(closeBtn);
     modalContent.appendChild(modalTitle);
     modalContent.appendChild(modalImage);
     modalContent.appendChild(modalDescription);
     modal.appendChild(modalContent);
   
+// Close modal when clicking the close button
     closeBtn.onclick = () => {
       modal.style.display = 'none';
     };
   
+// Close modal when clicking outside the modal content
     window.onclick = (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
@@ -119,9 +127,10 @@ const series = [
     };
   
     return modal;
-  }
+}
   
-  function crearTarjeta(serie) {
+// Function to create a card for each series
+function crearTarjeta(serie) {
     const tarjeta = document.createElement('div');
     tarjeta.classList.add('serie');
   
@@ -133,17 +142,21 @@ const series = [
     const titulo = document.createElement('h3');
     titulo.textContent = serie.titulo;
   
-    tarjeta.onclick = () => {
-      mostrarDetalles(serie);
+// Show details when clicking the card
+tarjeta.onclick = () => {
+    mostrarDetalles(serie);
     };
   
+    // Add image and title to the card
     tarjeta.appendChild(imagen);
     tarjeta.appendChild(titulo);
   
+    // Add card to the container
     contenedor.appendChild(tarjeta);
-  }
+}
   
-  function mostrarDetalles(serie) {
+// Function to show series details in modal
+function mostrarDetalles(serie) {
     const modal = document.querySelector('.modal');
     const modalTitle = modal.querySelector('h2');
     const modalDescription = modal.querySelector('#modal-descripcion');
@@ -154,8 +167,9 @@ const series = [
     modalImage.src = serie.imagen;
   
     modal.style.display = 'block';
-  }
-  
+}
+
+// Create a card for each series
   series.forEach(serie => {
     crearTarjeta(serie);
   });
