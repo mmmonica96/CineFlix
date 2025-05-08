@@ -132,3 +132,17 @@
 .dark-mode .seccion-generos .fantasia .genero-titulo {
   color: #8e44ad;
 }
+
+.sidebar-global-config {
+  justify-content: center;
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 150px;
+}
+.dark-mode .sidebar-global-config {
+  background: #2b2b2b;
+  color: #f1f1f1;
+}
+
