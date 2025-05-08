@@ -1,36 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/Preferences/preferencias.css';
 
-const generosEjemplo = [
-  { nombre: "Acción", imagen: "/img/generos/accion.jpg" },
-  { nombre: "Fantasía", imagen: "/img/generos/fantasia.jpg" },
-  { nombre: "Comedia", imagen: "/img/generos/comedia.jpg" },
-  { nombre: "Terror", imagen: "/img/generos/terror.jpg" },
-  { nombre: "Drama", imagen: "/img/generos/drama.jpg" },
-  { nombre: "Ciencia Ficción", imagen: "/img/generos/scifi.jpg" },
-  { nombre: "Romance", imagen: "/img/generos/romance.jpg" },
-  { nombre: "Animación", imagen: "/img/generos/animacion.jpg" }
-];
-
 export default function PreferencesPage() {
+  const [generos, setGeneros] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [guardado, setGuardado] = useState(false);
   const [logueado, setLogueado] = useState(null); // null = aún cargando
 
   useEffect(() => {
-    fetch('http://localhost/cineflix/CineFlix/backend/php/preferencias.php', {
+    fetch('http://localhost/cineflix/CineFlix/backend/php/preferences.php', {
       credentials: 'include',
     })
       .then(res => res.json())
-      .then(data => setLogueado(data.loggedIn))
+      .then(data => {
+        if (data.loggedIn) {
+          setLogueado(true);
+          if (data.generos) setGeneros(data.generos);
+          if (data.seleccionadas) setSeleccionados(data.seleccionadas); // cargar selecciones previas
+        } else {
+          setLogueado(false);
+        }
+      })
       .catch(() => setLogueado(false));
   }, []);
 
-  const toggleGenero = (nombre) => {
+  const toggleGenero = (id) => {
     setSeleccionados(prev =>
-      prev.includes(nombre)
-        ? prev.filter(g => g !== nombre)
-        : [...prev, nombre]
+      prev.includes(id)
+        ? prev.filter(g => g !== id)
+        : [...prev, id]
     );
     setGuardado(false);
   };
@@ -38,9 +36,27 @@ export default function PreferencesPage() {
   const guardarPreferencias = () => {
     if (seleccionados.length === 0) return;
 
-    const mensaje = `✅ Preferencias guardadas correctamente en la base de datos.\n\n🎬 Géneros seleccionados:\n- ${seleccionados.join('\n- ')}`;
-    alert(mensaje);
-    setGuardado(true);
+    fetch("http://localhost/cineflix/CineFlix/backend/php/preferences.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify({ categorias: seleccionados })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("✅ Preferencias guardadas correctamente.");
+          setGuardado(true);
+        } else {
+          alert("❌ No se pudieron guardar las preferencias.");
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("❌ Error al guardar preferencias.");
+      });
   };
 
   useEffect(() => {
@@ -58,15 +74,15 @@ export default function PreferencesPage() {
       <h1 className="preferences-title">Selecciona tus géneros favoritos</h1>
 
       <div className="generos-grid">
-        {generosEjemplo.map((genero) => (
+        {generos.map((genero) => (
           <label
-            key={genero.nombre}
-            className={`genero-card ${seleccionados.includes(genero.nombre) ? 'seleccionado' : ''}`}
+            key={genero.id}
+            className={`genero-card ${seleccionados.includes(genero.id) ? 'seleccionado' : ''}`}
           >
             <input
               type="checkbox"
-              checked={seleccionados.includes(genero.nombre)}
-              onChange={() => toggleGenero(genero.nombre)}
+              checked={seleccionados.includes(genero.id)}
+              onChange={() => toggleGenero(genero.id)}
               className="checkbox"
             />
             <img src={genero.imagen} alt={genero.nombre} className="genero-img" />
@@ -87,9 +103,10 @@ export default function PreferencesPage() {
         <div className="alerta-exito">
           ✅ Tus preferencias se han guardado correctamente en la base de datos.
           <ul className="lista-seleccionados">
-            {seleccionados.map((genero) => (
-              <li key={genero}>🎬 {genero}</li>
-            ))}
+            {seleccionados.map((id) => {
+              const genero = generos.find(g => g.id === id);
+              return <li key={id}>🎬 {genero?.nombre}</li>;
+            })}
           </ul>
         </div>
       )}
