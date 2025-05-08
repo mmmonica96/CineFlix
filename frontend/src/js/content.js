@@ -8,67 +8,67 @@ function Content() {
       {
         titulo: "La Monja",
         descripcion: "A demonic entity attacks a convent.",
-        imagen: "img/nun.jpg",
+        imagen: "../img/peliculas/monja.jpg",
       },
       {
         titulo: "Forrest Gump",
         descripcion: "A man with a low IQ narrates his life.",
-        imagen: "img/forrest_gump.jpg",
+        imagen: "../img/peliculas/forrestGump.jpg",
       },
       {
         titulo: "Cadena perpetua",
         descripcion: "A banker is wrongly convicted.",
-        imagen: "img/shawshank.jpg",
+        imagen: "../img/peliculas/cadenaPerpetua.jpg",
       },
       {
         titulo: "Titanic",
         descripcion: "A tragic romance aboard a legendary ship.",
-        imagen: "img/titanic.jpg",
+        imagen: "../img/peliculas/titanic.jpg",
       },
       {
         titulo: "La lista de Schindler",
         descripcion: "A businessman saves Jews during WWII.",
-        imagen: "img/schindler.jpg",
+        imagen: "../img/peliculas/lista.jpg",
       },
       {
         titulo: "Indiana Jones",
         descripcion: "An archaeologist goes on extraordinary adventures.",
-        imagen: "img/indiana_jones.jpg",
+        imagen: "../img/peliculas/indianaJones.jpg",
       },
       {
         titulo: "Jumanji",
         descripcion: "A magical game comes to life.",
-        imagen: "img/jumanji.jpg",
+        imagen: "../img/peliculas/jumanji.png",
       },
       {
         titulo: "Piratas del Caribe",
         descripcion: "A pirate seeks treasure and freedom.",
-        imagen: "img/pirates.jpg",
+        imagen: "../img/peliculas/piratas.jpg",
       },
       {
         titulo: "Viaje al centro de la Tierra",
         descripcion: "An expedition explores a subterranean world.",
-        imagen: "img/journey_earth.jpg",
+        imagen: "../img/peliculas/viaje.jpg",
       },
       {
         titulo: "Your Name",
         descripcion: "Two teenagers swap bodies.",
-        imagen: "img/your_name.jpg",
+        imagen: "../img/peliculas/yourName.png",
       },
       {
         titulo: "El viaje de Chihiro",
         descripcion: "A girl enters a spiritual world.",
-        imagen: "img/chihiro.jpg",
+        imagen: "../img/peliculas/chiro.jpg",
       },
       {
         titulo: "Akira",
         descripcion: "A young man gains devastating powers.",
-        imagen: "img/akira.jpg",
+        imagen: "../img/peliculas/akira.jpg",
       },
       {
         titulo: "Naruto: La Película",
         descripcion: "Ninjas face a new threat.",
-        imagen: "img/naruto_movie.jpg",
+        imagen: "../img/peliculas/naruto.jpg",
       },
     ];
 
