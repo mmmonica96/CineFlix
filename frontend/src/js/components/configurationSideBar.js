@@ -49,12 +49,12 @@ export default function ConfiguracionSidebar() {
           <br />
           {/* Configuración de modo oscuro */}
           <label>
+          Modo Oscuro
             <input
               type="checkbox"
               checked={modoOscuro}
               onChange={handleDarkModeToggle}
             />
-            Modo oscuro
           </label>
 
           <div>
