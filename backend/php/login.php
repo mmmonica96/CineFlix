@@ -1,12 +1,13 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
-session_start();
 
+session_start();
 include '../connection/db.php';
 
-// Leer datos JSON
+// Leer JSON
 $data = json_decode(file_get_contents("php://input"));
 
 if (!isset($data->email) || !isset($data->password)) {
@@ -17,7 +18,7 @@ if (!isset($data->email) || !isset($data->password)) {
 $email = $data->email;
 $password = $data->password;
 
-// Consultar base de datos
+// Validar usuario
 $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
 $stmt->bind_param("ss", $email, $password);
 $stmt->execute();
@@ -29,4 +30,7 @@ if ($result->num_rows === 1) {
 } else {
     echo json_encode(["success" => false, "message" => "Email o contraseña incorrectos."]);
 }
+
+$stmt->close();
+$conn->close();
 ?>

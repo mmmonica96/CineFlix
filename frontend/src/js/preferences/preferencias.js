@@ -15,6 +15,16 @@ const generosEjemplo = [
 export default function PreferencesPage() {
   const [seleccionados, setSeleccionados] = useState([]);
   const [guardado, setGuardado] = useState(false);
+  const [logueado, setLogueado] = useState(null); // null = aún cargando
+
+  useEffect(() => {
+    fetch('http://localhost/cineflix/CineFlix/backend/php/preferencias.php', {
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(data => setLogueado(data.loggedIn))
+      .catch(() => setLogueado(false));
+  }, []);
 
   const toggleGenero = (nombre) => {
     setSeleccionados(prev =>
@@ -22,7 +32,7 @@ export default function PreferencesPage() {
         ? prev.filter(g => g !== nombre)
         : [...prev, nombre]
     );
-    setGuardado(false); // Hide message if changes anything
+    setGuardado(false);
   };
 
   const guardarPreferencias = () => {
@@ -33,13 +43,15 @@ export default function PreferencesPage() {
     setGuardado(true);
   };
 
-  // Hide message after 5 seconds
   useEffect(() => {
     if (guardado) {
       const timer = setTimeout(() => setGuardado(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [guardado]);
+
+  if (logueado === null) return <p className="preferences-title">Cargando...</p>;
+  if (!logueado) return <p className="preferences-title">⚠️ Debes iniciar sesión para acceder a tus preferencias.</p>;
 
   return (
     <div className="preferences-container">

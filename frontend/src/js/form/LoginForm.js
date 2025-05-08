@@ -10,23 +10,26 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "http://localhost/cineflix/backend/php/login.php",
-      {
+    try {
+      const response = await fetch("http://localhost/cineflix/CineFlix/backend/php/login.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // 🔐 Importante para que envíe cookies/sesión
         body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        navigate("/preferences"); // Redirige al inicio si inicia sesión
+      } else {
+        alert(result.message || "Error al iniciar sesión");
       }
-    );
-
-    const result = await response.json();
-
-    if (result.success) {
-      navigate("/"); // Path to Init.js component (uses React Router)
-    } else {
-      alert(result.message || "Error al iniciar sesión");
+    } catch (error) {
+      alert("Error de red o de conexión con el servidor.");
+      console.error("Error:", error);
     }
   };
 
