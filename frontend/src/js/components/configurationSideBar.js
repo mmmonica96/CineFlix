@@ -35,11 +35,13 @@ export default function ConfiguracionSidebar() {
     <>
       {/* Botón que controla la visibilidad del sidebar de configuración */}
       <button
-        className="btn-global-config"
-        onClick={() => setMostrar(!mostrar)}
-      >
-        ⚙️ Configuración
-      </button>
+  className="btn-global-config"
+  onClick={() => setMostrar(!mostrar)}
+  aria-label="Abrir configuración"
+>
+  ⚙️ Configuración
+</button>
+
 
       {/* Sidebar con las configuraciones */}
       {mostrar && (
