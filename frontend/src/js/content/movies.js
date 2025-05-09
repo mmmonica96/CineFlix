@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/content.css";
+import "../../css/movies.css";
 
-function Content() {
+function Movies() {
   const [peliculas, setPeliculas] = useState([]);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ function Content() {
   );
 }
 
-export default Content;
+export default Movies;
