@@ -12,7 +12,7 @@ function LoginForm() {
 
     try {
       const response = await fetch(
-        "http://localhost/cineflix/backend/php/login.php",
+        "http://localhost/cineflix/CineFlix/backend/php/login.php",
         {
           method: "POST",
           headers: {
