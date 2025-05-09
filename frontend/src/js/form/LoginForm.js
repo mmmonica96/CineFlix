@@ -11,19 +11,22 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost/cineflix/CineFlix/backend/php/login.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // 🔐 Importante para que envíe cookies/sesión
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "http://localhost/cineflix/backend/php/login.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const result = await response.json();
 
       if (result.success) {
-        navigate("/preferences"); // Redirige al inicio si inicia sesión
+        navigate("/preferences");
       } else {
         alert(result.message || "Error al iniciar sesión");
       }
