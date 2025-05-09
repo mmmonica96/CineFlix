@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieCard from "../components/MovieCard";
 import '../../css/init.css';
 
 function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const totalMovies = 5; // Número de películas en el array
 
   const movies = [
     { titulo: "Harry Potter y la piedra filosofal", 
@@ -22,18 +24,46 @@ function HomePage() {
     descripcion: "Un ladrón especializado en robar secretos mediante sueños es ofrecido una última oportunidad.", 
     imagen: "/img/peliculas/inception.jpg" },
 
-
     { titulo: "Interestelar", 
     descripcion: "Un grupo de astronautas viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.", 
     imagen: "/img/peliculas/interstellar.jpg" }
   ];
 
+  // Controlamos el reposicionamiento después de la transición
+  useEffect(() => {
+    if (isTransitioning) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        
+        // Si estamos en la posición clonada del final, saltamos al original
+        if (currentIndex >= totalMovies) {
+          setCurrentIndex(currentIndex - totalMovies);
+        }
+        
+        // Si estamos en la posición clonada del inicio, saltamos al original
+        if (currentIndex < 0) {
+          setCurrentIndex(currentIndex + totalMovies);
+        }
+      }, 500); // Este tiempo debe coincidir con la duración de la transición CSS
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, isTransitioning, totalMovies]);
+
+  // Función para avanzar al siguiente slide
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex(prevIndex => prevIndex + 1);
+    }
   };
 
+  // Función para retroceder al slide anterior
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + movies.length) % movies.length);
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex(prevIndex => prevIndex - 1);
+    }
   };
 
   const generos = {
@@ -57,53 +87,81 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="banner">
-        <h1 className="home-title"> Bienvenido a CineFlix</h1>
+        <h1 className="home-title">Bienvenido a CineFlix</h1>
         <p className="home-description">La mejor plataforma para ver películas y series en línea.</p>
-<br></br>
-<br></br>
-        <div className="movie-carousel">
-          <div className="movie-cards" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-            {movies.map((movie, index) => (
-              <div className="carousel-item" key={index}>
-                <MovieCard 
-                  titulo={movie.titulo} 
-                  descripcion={movie.descripcion} 
-                  imagen={movie.imagen} 
-                />
-              </div>
+        <br></br>
+        <br></br>
+          <div className="movie-carousel">
+          <div className="movie-cards-container">
+            <div 
+              className="movie-cards" 
+              style={{ 
+                transform: `translateX(calc(-${currentIndex + totalMovies} * (100% / 3)))`,
+                transition: isTransitioning ? 'transform 0.5s ease' : 'none'
+              }}
+            >
+              {/* Repetimos las últimas películas al principio para el efecto de loop continuo */}
+              {movies.map((movie, index) => (
+                <div className="carousel-item" key={`duplicate-start-${index}`}>
+                  <MovieCard 
+                    titulo={movie.titulo} 
+                    descripcion={movie.descripcion} 
+                    imagen={movie.imagen} 
+                  />
+                </div>
+              ))}
               
+              {/* Las películas principales */}
+              {movies.map((movie, index) => (
+                <div className="carousel-item" key={`original-${index}`}>
+                  <MovieCard 
+                    titulo={movie.titulo} 
+                    descripcion={movie.descripcion} 
+                    imagen={movie.imagen} 
+                  />
+                </div>
+              ))}
+              
+              {/* Repetimos las primeras películas al final para el efecto de loop continuo */}
+              {movies.map((movie, index) => (
+                <div className="carousel-item" key={`duplicate-end-${index}`}>
+                  <MovieCard 
+                    titulo={movie.titulo} 
+                    descripcion={movie.descripcion} 
+                    imagen={movie.imagen} 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="carousel-controls-side">
+            <button className="prev" onClick={prevSlide}>‹</button>
+            <button className="next" onClick={nextSlide}>›</button>
+          </div>
+
+          <div className="seccion-generos">
+            {Object.entries(generos).map(([genero, lista], idx) => (
+              <div key={idx}>
+                <h2 className="genero-titulo">{genero}</h2>
+                <div className="movie-grid">
+                  {lista.map((movie, i) => (
+                    <MovieCard key={i} titulo={movie.titulo} descripcion={movie.descripcion} imagen={movie.imagen} />
+                  ))}
+                </div>
+              </div>
             ))}
-            
-         </div>
-         <div className="carousel-controls-side">
-          <button className="prev" onClick={prevSlide}>‹</button>
-          <button className="next" onClick={nextSlide}>›</button>
-        </div>
+          </div>
 
-        <div className="seccion-generos">
-  {Object.entries(generos).map(([genero, lista], idx) => (
-    <div key={idx}>
-      <h2 className="genero-titulo">{genero}</h2>
-      <div className="movie-grid">
-        {lista.map((movie, i) => (
-          <MovieCard key={i} titulo={movie.titulo} descripcion={movie.descripcion} imagen={movie.imagen} />
-        ))}
-      </div>
-    </div>
-  ))}
-</div>
-
-<div className="top-10-section">
-  <h2 className="genero-titulo"> Top 10 Películas</h2>
-  <ol className="top-10-list">
-    {top10.map((titulo, index) => (
-      <li key={index}>
-        <span className="ranking-number">#{index + 1}</span> {titulo}
-      </li>
-    ))}
-  </ol>
-</div>
-
+          <div className="top-10-section">
+            <h2 className="genero-titulo">Top 10 Películas</h2>
+            <ol className="top-10-list">
+              {top10.map((titulo, index) => (
+                <li key={index}>
+                  <span className="ranking-number">#{index + 1}</span> {titulo}
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </div>
     </div>
