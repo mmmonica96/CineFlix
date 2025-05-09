@@ -9,8 +9,8 @@ import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
 import PreferencesPage from "./preferences/preferencias";
 import ConfigurationSideBar from "./components/configurationSideBar";
-import Movies from "./content/movies";
 import Series from "./content/series";
+import Movies from "./content/movies";
 import MovieDetails from "./content/movieDetails";
 
 function Init() {
@@ -29,7 +29,7 @@ function Init() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/series" element={<Series />} />
-          <Route path="/movieDetails" element={<MovieDetails />} />
+          <Route path="/movies" element={<MovieDetails />} />
         </Routes>
       </div>
     </Router>
