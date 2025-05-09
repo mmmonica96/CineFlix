@@ -9,8 +9,9 @@ import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
 import PreferencesPage from "./preferences/preferencias";
 import ConfigurationSideBar from "./components/configurationSideBar";
-import Content from "./content";
-import MovieDetails from "./movieDetails";
+import Movies from "./content/movies";
+import Series from "./content/series";
+import MovieDetails from "./content/movieDetails";
 
 function Init() {
   return (
@@ -26,8 +27,9 @@ function Init() {
           <Route path="/registro" element={<RegisterForm />} />
           <Route path="/contacto" element={<ContactForm />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/movies" element={<Content />} />
-          <Route path="/movies" element={<MovieDetails />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/series" element={<Series />} />
+          <Route path="/movieDetails" element={<MovieDetails />} />
         </Routes>
       </div>
     </Router>
