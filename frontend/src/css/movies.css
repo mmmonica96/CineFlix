@@ -1,130 +1,198 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #fef6fa;  /* Light background */
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fef6fa; /* Light background */
+  font-family: Arial, sans-serif;
 }
-  
+
 /* Container to hold movie cards */
 .peliculas-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
-  
+
 /* Style for each movie card */
 .pelicula {
-    width: 250px;
-    background-color: #ffffff;  /* White background for each card */
-    border-radius: 12px;
-    border: 2px solid #af4c91;  /* Purple border */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);  /* Shadow effect */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Smooth hover effect */
-    overflow: hidden;
-    cursor: pointer;
-    animation: slideUp 0.5s ease forwards;  /* Animation for card appearance */
+  width: 250px;
+  background-color: #ffffff; /* White background for each card */
+  border-radius: 12px;
+  border: 2px solid #af4c91; /* Purple border */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  overflow: hidden;
+  cursor: pointer;
+  animation: slideUp 0.5s ease forwards; /* Animation for card appearance */
 }
-  
+
 .pelicula:hover {
-    transform: translateY(-5px);  /* Slight raise effect on hover */
-    box-shadow: 0 8px 25px rgba(175, 76, 145, 0.3);  /* Enhanced shadow on hover */
+  transform: translateY(-5px); /* Slight raise effect on hover */
+  box-shadow: 0 8px 25px rgba(175, 76, 145, 0.3); /* Enhanced shadow on hover */
 }
-  
+
 /* Image inside each movie card */
 .pelicula-imagen {
-    width: 100%;
-    height: 250px;  /* Adjusted height */
-    object-fit: cover;  /* Ensures image covers the box without distortion */
+  width: 100%;
+  height: 250px; /* Adjusted height */
+  object-fit: cover; /* Ensures image covers the box without distortion */
 }
-  
+
 /* Title style inside each card */
 .pelicula h3 {
-    text-align: center;
-    color: #7a2f4e;  /* Dark pink color */
-    font-size: 1.2em;
-    padding: 10px;
-    margin: 0;
-    background-color: #fce4f0;  /* Light pink background */
-    border-top: 1px solid #e0e0e0;  /* Light grey border on top */
+  text-align: center;
+  color: #7a2f4e; /* Dark pink color */
+  font-size: 1.2em;
+  padding: 10px;
+  margin: 0;
+  background-color: #fce4f0; /* Light pink background */
+  border-top: 1px solid #e0e0e0; /* Light grey border on top */
 }
-  
+
 /* Modal background (darkened screen) */
 .modal {
-    display: none;  /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);  /* Semi-transparent background */
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
 }
-  
+
 /* Modal content style */
 .modal-content {
-    background-color: #fff;  /* White background for the modal */
-    margin: 10% auto;
-    padding: 30px;
-    border: 2px solid #af4c91;  /* Purple border */
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;  /* Max width for the modal */
-    text-align: center;
-    animation: slideUp 0.4s ease-out;  /* Slide-up animation for modal */
-    position: relative;
+  background-color: #fff; /* White background for the modal */
+  margin: 10% auto;
+  padding: 30px;
+  border: 2px solid #af4c91; /* Purple border */
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px; /* Max width for the modal */
+  text-align: center;
+  animation: slideUp 0.4s ease-out; /* Slide-up animation for modal */
+  position: relative;
 }
-  
+
 /* Title inside modal */
 .modal-content h2 {
-    color: #7a2f4e;  /* Dark pink color */
-    margin-top: 0;
-    font-size: 1.6em;  /* Adjusted size */
+  color: #7a2f4e; /* Dark pink color */
+  margin-top: 0;
+  font-size: 1.6em; /* Adjusted size */
 }
-  
+
 /* Image inside modal */
 .modal-imagen {
-    width: 100%;
-    height: 300px;  /* Adjusted height */
-    object-fit: contain;  /* Image will be scaled to fit */
-    margin: 20px 0;
+  width: 100%;
+  height: 300px; /* Adjusted height */
+  object-fit: contain; /* Image will be scaled to fit */
+  margin: 20px 0;
 }
-  
+
 /* Description text inside modal */
 #modal-descripcion {
-    color: #444;  /* Dark text color */
-    font-size: 1.1em;  /* Slightly larger text */
-    margin-top: 10px;
-    text-align: justify;  /* Justify text to make it more readable */
+  color: #444; /* Dark text color */
+  font-size: 1.1em; /* Slightly larger text */
+  margin-top: 10px;
+  text-align: justify; /* Justify text to make it more readable */
 }
-  
+
 /* Close button style in the modal */
 .cerrar {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #af4c91;  /* Purple color */
-    cursor: pointer;
-    transition: color 0.3s;  /* Smooth color change */
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #af4c91; /* Purple color */
+  cursor: pointer;
+  transition: color 0.3s; /* Smooth color change */
 }
-  
+
 .cerrar:hover {
-    color: #7a2f4e;  /* Dark pink on hover */
+  color: #7a2f4e;
 }
-  
+
+/* api  */
+/* details */
+.movie-details {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff0f6; /* fondo suave rosado */
+  border: 2px solid #d36d98;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.movie-details h1 {
+  color: #7a2f4e;
+  margin-bottom: 20px;
+}
+
+.movie-details img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.movie-details p {
+  font-size: 1.1em;
+  color: #444;
+  margin: 20px auto;
+  text-align: justify;
+  line-height: 1.5;
+}
+/* comentary */
+.comentarios-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* textarea  */
+.comentarios-container textarea {
+  width: 90%;
+  max-width: 600px;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  resize: vertical;
+  margin-bottom: 15px;
+}
+/* button  */
+.comentarios-container button {
+  padding: 6px 14px;
+  font-size: 0.9em;
+  background-color: #af4c91;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comentarios-container button:hover {
+  background-color: #8b3b73;
+}
+
 /* Animation for sliding up */
 @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(15px);  /* Initial position for the slide-up effect */
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);  /* Final position */
-    }
+  from {
+    opacity: 0;
+    transform: translateY(15px); /* Initial position for the slide-up effect */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Final position */
+  }
 }
-  

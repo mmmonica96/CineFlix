@@ -8,14 +8,14 @@ function Movies() {
   useEffect(() => {
     const peliculasData = [
       {
-        id: 1,
+        id: 439079,
         titulo: "La Monja",
         descripcion: "A demonic entity attacks a convent.",
         imagen: "../img/peliculas/monja.jpg",
       },
     ];
 
-    //update status with movies
+    //update the state with the fetched data
     setPeliculas(peliculasData);
   }, []);
 
@@ -23,7 +23,7 @@ function Movies() {
     <div className="peliculas-container">
       {peliculas.map((pelicula) => (
         <div key={pelicula.id} className="pelicula">
-          <Link to={`/movie/${pelicula.id}`}>
+          <Link to={`/movies/${pelicula.id}`}>
             <img
               src={pelicula.imagen}
               alt={pelicula.titulo}

@@ -12,6 +12,7 @@ import ConfigurationSideBar from "./components/configurationSideBar";
 import Series from "./content/series";
 import Movies from "./content/movies";
 import MovieDetails from "./content/movieDetails";
+import SeriesDetails from "./content/seriesDetails";
 
 function Init() {
   return (
@@ -29,7 +30,8 @@ function Init() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/series" element={<Series />} />
-          <Route path="/movies" element={<MovieDetails />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
+          <Route path="/series/:id" element={<SeriesDetails />} />
         </Routes>
       </div>
     </Router>

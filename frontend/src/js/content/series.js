@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import "../../css/series.css";
+import { Link } from "react-router-dom"; // Usamos Link para redirigir dentro de la app
+import "../../css/series.css"; // Se mantiene el mismo CSS
 
 function Series() {
-  // Array of series with title, description and image
+  // Array de series con título, descripción e imagen
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function Series() {
       },
     ];
 
-    //update status with series
+    // Actualizamos el estado con las series
     setSeries(seriesData);
   }, []);
 
@@ -109,17 +109,13 @@ function Series() {
     <div className="series-container">
       {series.map((serie) => (
         <div key={serie.id} className="serie">
-          <a
-            href={`/serie/${serie.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link to={`/serie/${serie.id}`}>
             <img
               src={serie.imagen}
               alt={serie.titulo}
               className="serie-imagen"
             />
-          </a>
+          </Link>
         </div>
       ))}
     </div>
