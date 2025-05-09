@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./register/RegisterForm";
-import HomePage from "./home/HomePage";
+import HomePage from "./home/HomePage"; // Importamos la página de inicio
 import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
 import PreferencesPage from "./preferences/preferencias";
@@ -13,6 +13,7 @@ import Series from "./content/series";
 import Movies from "./content/movies";
 import MovieDetails from "./content/movieDetails";
 import SeriesDetails from "./content/seriesDetails";
+
 
 function Init() {
   return (
@@ -32,6 +33,7 @@ function Init() {
           <Route path="/series" element={<Series />} />
           <Route path="/movies/:id" element={<MovieDetails />} />
           <Route path="/series/:id" element={<SeriesDetails />} />
+          <Route path="/movieDetails" element={<MovieDetails />} />
         </Routes>
       </div>
     </Router>

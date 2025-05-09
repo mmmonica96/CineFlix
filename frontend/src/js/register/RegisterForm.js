@@ -13,7 +13,7 @@ function RegisterForm() {
 
     try {
       const response = await fetch(
-        "http://localhost/cineflix/CineFlix/backend/php/register.php",
+        "http://localhost/cineflix/backend/php/register.php",
         {
           method: "POST",
           headers: {
