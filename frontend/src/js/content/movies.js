@@ -1,21 +1,35 @@
 import React, { useEffect, useState } from "react";
-import "../../css/series.css"; // Mantiene estilos compartidos
+import "../../css/series.css"; // Reutiliza estilos de series
 
 function Movies() {
   const [peliculas, setPeliculas] = useState([]);
   const [modalData, setModalData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost/cineflix/backend/php/movies.php", {
+    const fetchLocal = fetch("http://localhost/cineflix/backend/php/movies.php", {
       credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.loggedIn && Array.isArray(data.movies)) {
-          setPeliculas(data.movies);
-        } else {
-          setPeliculas([]);
+    }).then((res) => res.json());
+
+    // Simulamos API externa
+    const peliculasAPI = [
+      {
+        code: 439079,
+        titulo: "La Monja",
+        descripcion: "A demonic entity attacks a convent.",
+        imagen: "monja.jpg", // Imagen ya disponible localmente
+      },
+    ];
+
+    Promise.all([fetchLocal])
+      .then(([localData]) => {
+        const combinadas = [];
+
+        if (localData.loggedIn && Array.isArray(localData.movies)) {
+          combinadas.push(...localData.movies);
         }
+
+        combinadas.push(...peliculasAPI); // Mezcla datos locales y API
+        setPeliculas(combinadas);
       })
       .catch((error) => {
         console.error("Error al cargar películas:", error);
@@ -34,9 +48,9 @@ function Movies() {
   return (
     <>
       <div className="series-container">
-        {peliculas.map((pelicula) => (
+        {peliculas.map((pelicula, index) => (
           <div
-            key={pelicula.id}
+            key={pelicula.id || pelicula.code || index}
             className="serie"
             onClick={() => abrirModal(pelicula)}
           >

@@ -49,7 +49,7 @@ $placeholders = implode(',', array_fill(0, count($categoryIds), '?'));
 $types = str_repeat('i', count($categoryIds));
 
 // Obtener películas según preferencias
-$sql = "SELECT id, name, description, img FROM movies WHERE idPreferences IN ($placeholders)";
+$sql = "SELECT id, name, description, code, img FROM movies WHERE idPreferences IN ($placeholders)";
 $stmtMovies = $conn->prepare($sql);
 $stmtMovies->bind_param($types, ...$categoryIds);
 $stmtMovies->execute();
