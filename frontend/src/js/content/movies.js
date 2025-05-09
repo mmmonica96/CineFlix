@@ -1,38 +1,72 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "../../css/movies.css";
+import "../../css/series.css"; // Mantiene estilos compartidos
 
 function Movies() {
   const [peliculas, setPeliculas] = useState([]);
+  const [modalData, setModalData] = useState(null);
 
   useEffect(() => {
-    const peliculasData = [
-      {
-        id: 1,
-        titulo: "La Monja",
-        descripcion: "A demonic entity attacks a convent.",
-        imagen: "../img/peliculas/monja.jpg",
-      },
-    ];
-
-    //update status with movies
-    setPeliculas(peliculasData);
+    fetch("http://localhost/cineflix/backend/php/movies.php", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.loggedIn && Array.isArray(data.movies)) {
+          setPeliculas(data.movies);
+        } else {
+          setPeliculas([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al cargar películas:", error);
+        setPeliculas([]);
+      });
   }, []);
 
+  const abrirModal = (pelicula) => {
+    setModalData(pelicula);
+  };
+
+  const cerrarModal = () => {
+    setModalData(null);
+  };
+
   return (
-    <div className="peliculas-container">
-      {peliculas.map((pelicula) => (
-        <div key={pelicula.id} className="pelicula">
-          <Link to={`/movie/${pelicula.id}`}>
+    <>
+      <div className="series-container">
+        {peliculas.map((pelicula) => (
+          <div
+            key={pelicula.id}
+            className="serie"
+            onClick={() => abrirModal(pelicula)}
+          >
             <img
-              src={pelicula.imagen}
+              src={`/img/peliculas/${pelicula.imagen}`}
               alt={pelicula.titulo}
-              className="pelicula-imagen"
+              className="serie-imagen"
             />
-          </Link>
+            <h3>{pelicula.titulo}</h3>
+          </div>
+        ))}
+      </div>
+
+      {modalData && (
+        <div className="modal" onClick={cerrarModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="cerrar" onClick={cerrarModal}>
+              &times;
+            </span>
+            <h2>{modalData.titulo}</h2>
+            <img
+              src={`/img/peliculas/${modalData.imagen}`}
+              alt={modalData.titulo}
+              className="modal-imagen"
+            />
+            <p id="modal-descripcion">{modalData.descripcion}</p>
+          </div>
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 }
 
