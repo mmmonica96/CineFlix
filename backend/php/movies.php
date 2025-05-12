@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -49,6 +50,13 @@ $placeholders = implode(',', array_fill(0, count($categoryIds), '?'));
 $types = str_repeat('i', count($categoryIds));
 
 // Obtener películas según preferencias
+=======
+//cors
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+//get movies based on preferences
+>>>>>>> origin/monica
 $sql = "SELECT id, name, description, code, img FROM movies WHERE idPreferences IN ($placeholders)";
 $stmtMovies = $conn->prepare($sql);
 $stmtMovies->bind_param($types, ...$categoryIds);
@@ -61,8 +69,17 @@ while ($row = $resMovies->fetch_assoc()) {
         "id" => $row["id"],
         "titulo" => $row["name"],
         "descripcion" => $row["description"],
+<<<<<<< HEAD
         "imagen" => $row["img"]  // ✅ Solo el nombre de archivo
+=======
+        "imagen" => $row["img"]
+>>>>>>> origin/monica
     ];
 }
 
 echo json_encode(["loggedIn" => true, "movies" => $movies]);
+<<<<<<< HEAD
+=======
+
+?>
+>>>>>>> origin/monica
