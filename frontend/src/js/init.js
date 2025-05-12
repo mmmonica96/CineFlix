@@ -9,7 +9,10 @@ import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
 import PreferencesPage from "./preferences/preferencias";
 import ConfigurationSideBar from "./components/configurationSideBar";
+<<<<<<<<< Temporary merge branch 1
+=========
 import Series from "./content/series";
+>>>>>>>>> Temporary merge branch 2
 import Movies from "./content/movies";
 import MovieDetails from "./content/movieDetails";
 import SeriesDetails from "./content/seriesDetails";
@@ -30,10 +33,13 @@ function Init() {
           <Route path="/contacto" element={<ContactForm />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/movies" element={<Movies />} />
+<<<<<<<<< Temporary merge branch 1
+          <Route path="/movieDetails" element={<MovieDetails />} />
+=========
           <Route path="/series" element={<Series />} />
           <Route path="/movies/:id" element={<MovieDetails />} />
           <Route path="/series/:id" element={<SeriesDetails />} />
-          <Route path="/movieDetails" element={<MovieDetails />} />
+>>>>>>>>> Temporary merge branch 2
         </Routes>
       </div>
     </Router>
