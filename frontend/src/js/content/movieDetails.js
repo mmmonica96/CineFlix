@@ -5,10 +5,10 @@ import "../../css/movies.css";
 const API_KEY = "3945fb63d0ad0dd349bbc6ecfc03fd15";
 
 function MovieDetails() {
-  const { id } = useParams();
-  const [pelicula, setPelicula] = useState(null);
-  const [comentarios, setComentarios] = useState("");
-  const [comentariosList, setComentariosList] = useState([]);
+   const { id } = useParams();
+    const [pelicula, setPelicula] = useState(null);
+    const [comentarios, setComentarios] = useState([]);
+    const [nuevoComentario, setNuevoComentario] = useState("");
 
   useEffect(() => {
     // Fetch de los detalles de la película
@@ -21,11 +21,10 @@ function MovieDetails() {
   }, [id]);
 
   //function to handle the comment submission
-  const handleComentario = () => {
-    //check if there is any comment typed
-    if (comentarios) {
-      setComentariosList([...comentariosList, comentarios]);
-      setComentarios("");
+  const handleEnviarComentario = () => {
+    if (nuevoComentario.trim()) {
+      setComentarios((prev) => [...prev, nuevoComentario.trim()]);
+      setNuevoComentario("");
     }
   };
 
@@ -40,20 +39,19 @@ function MovieDetails() {
             className="movie-detail-image"
           />
           <p>{pelicula.overview}</p>
-          <div>
-            <h3>Comentarios:</h3>
-            <textarea
-              value={comentarios}
-              onChange={(e) => setComentarios(e.target.value)}
-              placeholder="Deja tu comentario..."
-            ></textarea>
-            <button onClick={handleComentario}>Comentar</button>
-            <div className="comentarios-list">
-              {comentariosList.map((comentario, index) => (
-                <p key={index}>{comentario}</p>
-              ))}
-            </div>
-          </div>
+          <div className="comentarios-container">
+        <textarea
+          value={nuevoComentario}
+          onChange={(e) => setNuevoComentario(e.target.value)}
+          placeholder="Escribe un comentario..."
+        />
+        <button onClick={handleEnviarComentario}>Enviar</button>
+        <ul>
+          {comentarios.map((coment, index) => (
+            <li key={index}>{coment}</li>
+          ))}
+        </ul>
+      </div>
         </>
       ) : (
         <p>Cargando detalles de la película...</p>

@@ -8,13 +8,9 @@ export default function PreferencesPage() {
   const [logueado, setLogueado] = useState(null); // null = aún cargando
 
   useEffect(() => {
-<<<<<<< HEAD
-    fetch('http://localhost/cineflix/backend/php/preferences.php', {
-      credentials: 'include',
-=======
+
     fetch("http://localhost/cineflix/backend/php/preferences.php", {
       credentials: "include",
->>>>>>> origin/monica
     })
       .then((res) => res.json())
       .then((data) => {

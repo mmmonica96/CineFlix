@@ -4,19 +4,15 @@ import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./register/RegisterForm";
-import HomePage from "./home/HomePage"; // Importamos la página de inicio
+import HomePage from "./home/HomePage";
 import ContactForm from "./Contact/ContactForm";
 import FAQ from "./FAQ";
 import PreferencesPage from "./preferences/preferencias";
 import ConfigurationSideBar from "./components/configurationSideBar";
-<<<<<<<<< Temporary merge branch 1
-=========
 import Series from "./content/series";
->>>>>>>>> Temporary merge branch 2
 import Movies from "./content/movies";
 import MovieDetails from "./content/movieDetails";
 import SeriesDetails from "./content/seriesDetails";
-
 
 function Init() {
   return (

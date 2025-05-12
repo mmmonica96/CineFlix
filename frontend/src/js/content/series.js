@@ -113,8 +113,9 @@ function Series() {
               className="serie-imagen"
               onError={(e) => (e.target.src = "/img/series/default.jpg")}
             />
-          </a>
-        </div>
+           </a>
+            <h3>{serie.titulo}</h3>
+          </div>
       ))}
     </div>
   );

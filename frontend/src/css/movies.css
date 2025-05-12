@@ -15,6 +15,41 @@ body {
   gap: 20px;
 }
 
+/*container */
+.movie-details-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #af4c91;
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  animation: slideUp 0.5s ease forwards;
+}
+
+/* title */
+.movie-details h1 {
+  color: #7a2f4e;
+  margin: 10px 0;
+  font-size: 1.6em;
+  padding: 0 10px;
+}
+
+.movie-detail-image {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid #af4c91;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  display: block;
+  background-color: #fff;
+}
+
 /*style for each movie card */
 .pelicula {
   width: 250px;
@@ -126,4 +161,45 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.comentarios-list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/*comentary */
+.comentarios-container textarea {
+  width: 90%;
+  max-width: 600px;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  resize: vertical;
+  margin-bottom: 15px;
+  font-family: Arial, sans-serif;
+}
+
+/* button*/
+.comentarios-container button {
+  padding: 6px 14px;
+  font-size: 0.9em;
+  background-color: #af4c91;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+  max-width: 120px;
+  margin-top: 10px;
+}
+
+.comentarios-container button:hover {
+  background-color: #7a2f4e;
 }
