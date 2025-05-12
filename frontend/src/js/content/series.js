@@ -35,13 +35,13 @@ function Series() {
         id: 5,
         titulo: "The Mandalorian",
         descripcion: "Un cazarrecompensas en el universo Star Wars.",
-        imagen: "/img/series/mandalorian.jpg",
+        imagen: "/img/series/mandalorian.jpeg",
       },
       {
         id: 6,
         titulo: "Black Mirror",
         descripcion: "Relatos distópicos sobre la tecnología.",
-        imagen: "/img/series/black_mirror.jpg",
+        imagen: "/img/series/black.jpg",
       },
       {
         id: 7,
@@ -53,13 +53,13 @@ function Series() {
         id: 8,
         titulo: "Vikingos",
         descripcion: "Historias épicas de guerreros nórdicos.",
-        imagen: "/img/series/vikings.jpg",
+        imagen: "/img/series/vikingos.jpg",
       },
       {
         id: 9,
         titulo: "Jack Ryan",
         descripcion: "Un analista de la CIA se convierte en agente.",
-        imagen: "/img/series/jack_ryan.jpg",
+        imagen: "/img/series/jack.jpg",
       },
       {
         id: 10,
@@ -71,7 +71,7 @@ function Series() {
         id: 11,
         titulo: "The Haunting of Hill House",
         descripcion: "Una familia es perseguida por su pasado.",
-        imagen: "/img/series/hill_house.jpg",
+        imagen: "/img/series/hill.jpg",
       },
       {
         id: 12,
@@ -83,19 +83,19 @@ function Series() {
         id: 13,
         titulo: "American Horror Story",
         descripcion: "Temporadas antológicas de terror.",
-        imagen: "/img/series/ahs.jpg",
+        imagen: "/img/series/american.jpg",
       },
       {
         id: 14,
         titulo: "Penny Dreadful",
         descripcion: "Monstruos clásicos se reúnen en Londres.",
-        imagen: "/img/series/penny_dreadful.jpg",
+        imagen: "/img/series/penny.jpg",
       },
       {
         id: 15,
         titulo: "Breaking Bad",
         descripcion: "Un profesor se convierte en narcotraficante.",
-        imagen: "/img/series/breaking_bad.jpg",
+        imagen: "/img/series/breaking.jpg",
       },
     ];
 
