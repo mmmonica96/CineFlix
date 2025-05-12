@@ -20,7 +20,7 @@ if (!isset($_SESSION['user'])) {
 
 $user_email = $_SESSION['user'];
 
-// Obtener ID del usuario
+//id
 $stmtUser = $conn->prepare("SELECT id FROM users WHERE email = ?");
 $stmtUser->bind_param("s", $user_email);
 $stmtUser->execute();
@@ -33,7 +33,7 @@ if ($resUser->num_rows !== 1) {
 
 $user_id = $resUser->fetch_assoc()['id'];
 
-// Si es POST, guardar preferencias
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
     $categorias = $data['categorias'] ?? [];
@@ -55,20 +55,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Si es GET, devolver preferencias disponibles y seleccionadas
+
 $query = "SELECT id, category, img FROM preferences ORDER BY id ASC";
 $result = $conn->query($query);
 
 $preferences = [];
 while ($row = $result->fetch_assoc()) {
     $preferences[] = [
-        "id" => (int)$row["id"],
+        "id" => (int) $row["id"],
         "nombre" => ucfirst($row["category"]),
         "imagen" => "/img/generos/" . $row["img"]
     ];
 }
 
-// Obtener categorías seleccionadas por el usuario
+//category
 $seleccionadas = [];
 $selQuery = $conn->prepare("SELECT category_id FROM user_preferences WHERE user_id = ?");
 $selQuery->bind_param("i", $user_id);
@@ -76,10 +76,10 @@ $selQuery->execute();
 $resSel = $selQuery->get_result();
 
 while ($row = $resSel->fetch_assoc()) {
-    $seleccionadas[] = (int)$row['category_id'];
+    $seleccionadas[] = (int) $row['category_id'];
 }
 
-// Respuesta
+
 echo json_encode([
     "loggedIn" => true,
     "user" => $user_email,

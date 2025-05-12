@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Usamos Link para redirigir dentro de la app
-import "../../css/series.css"; // Se mantiene el mismo CSS
+import "../../css/series.css";
 
 function Series() {
-  // Array de series con título, descripción e imagen
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
@@ -13,19 +11,19 @@ function Series() {
         titulo: "Outlander",
         descripcion:
           "Una enfermera viaja en el tiempo a la Escocia del siglo XVIII.",
-        imagen: "../img/series/outlander.jpg",
+        imagen: "../img/series/outlander.png",
       },
       {
         id: 2,
         titulo: "13 Reasons Why",
         descripcion: "Una chica deja pistas tras su suicidio.",
-        imagen: "../img/series/13reasons.jpg",
+        imagen: "../img/series/treceRazones.jpg",
       },
       {
         id: 3,
         titulo: "Stranger Things",
         descripcion: "Niños enfrentan criaturas sobrenaturales.",
-        imagen: "../img/series/stranger_things.jpg",
+        imagen: "../img/series/strange.jpg",
       },
       {
         id: 4,
@@ -101,7 +99,6 @@ function Series() {
       },
     ];
 
-    // Actualizamos el estado con las series
     setSeries(seriesData);
   }, []);
 
@@ -109,13 +106,17 @@ function Series() {
     <div className="series-container">
       {series.map((serie) => (
         <div key={serie.id} className="serie">
-          <Link to={`/serie/${serie.id}`}>
+          <a
+            href={`/series/${serie.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               src={serie.imagen}
               alt={serie.titulo}
               className="serie-imagen"
             />
-          </Link>
+          </a>
         </div>
       ))}
     </div>
