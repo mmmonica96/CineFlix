@@ -33,13 +33,9 @@ function Init() {
           <Route path="/contacto" element={<ContactForm />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/movies" element={<Movies />} />
-<<<<<<<<< Temporary merge branch 1
-          <Route path="/movieDetails" element={<MovieDetails />} />
-=========
           <Route path="/series" element={<Series />} />
           <Route path="/movies/:id" element={<MovieDetails />} />
           <Route path="/series/:id" element={<SeriesDetails />} />
->>>>>>>>> Temporary merge branch 2
         </Routes>
       </div>
     </Router>
