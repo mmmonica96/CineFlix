@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-// API KEY proporcionada
+// API KEY
 const API_KEY = "83ec875af374dd17a49d64b0cb8ce88c";
 
-// Lista fija de series con sus detalles
+//fixed list of series with their details
 const seriesTitulos = [
   {
     id: "1",
@@ -135,7 +135,7 @@ function SeriesDetails() {
   if (!serie) return <p>Cargando detalles...</p>;
 
   return (
-    <div className="movie-details">
+    <div className="series-details">
       <h1>{serie.name}</h1>
       {serie.poster_path && (
         <img
