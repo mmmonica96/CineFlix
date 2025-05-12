@@ -1,68 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "../../css/movies.css";
+
+const API_KEY = "3945fb63d0ad0dd349bbc6ecfc03fd15";
 
 function MovieDetails() {
-  //is
   const { id } = useParams();
-
-  //we define the state for storing movie data, comments and error
   const [pelicula, setPelicula] = useState(null);
   const [comentarios, setComentarios] = useState("");
-  const [error, setError] = useState(null);
+  const [comentariosList, setComentariosList] = useState([]);
 
-  //effect to be executed when the id parameter changes
   useEffect(() => {
-    const apiKey = "83ec875af374dd17a49d64b0cb8ce88c";
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es`;
-
-    //request to API
-    fetch(url)
+    // Fetch de los detalles de la película
+    const fetchPelicula = fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=es-ES`
+    )
       .then((res) => res.json())
       .then((data) => setPelicula(data))
-      .catch((err) => {
-        //if an error occurs, we handle it
-        console.error("Error al obtener la película:", err);
-        setError("Error al obtener la información de la película");
-      });
+      .catch((error) => console.error("Error al cargar película:", error));
   }, [id]);
 
-  //if  there is an error, we display the error message
-  if (error) return <div>{error}</div>;
-
-  //if we have not yet loaded the movie data, we display a loading message.
-  if (!pelicula) return <div>Cargando...</div>;
-
-  //url
-  const posterUrl = pelicula.poster_path
-    ? `https://image.tmdb.org/t/p/w500${pelicula.poster_path}`
-    : "https://via.placeholder.com/500x750?text=Imagen+no+disponible";
+  //function to handle the comment submission
+  const handleComentario = () => {
+    //check if there is any comment typed
+    if (comentarios) {
+      setComentariosList([...comentariosList, comentarios]);
+      setComentarios("");
+    }
+  };
 
   return (
-    <div className="movie-details">
-      {/*title*/}
-      <h1>{pelicula.title}</h1>
-
-      {/* image*/}
-      <img src={posterUrl} alt={pelicula.title} />
-
-      {/*description */}
-      <p>{pelicula.overview}</p>
-
-      <div className="comentarios-container">
-        <textarea
-          placeholder="Deja un comentario..."
-          value={comentarios}
-          onChange={(e) => setComentarios(e.target.value)}
-        />
-
-        <button onClick={() => alert(`Comentario enviado: ${comentarios}`)}>
-          Enviar
-        </button>
-      </div>
+    <div className="movie-details-container">
+      {pelicula ? (
+        <>
+          <h1>{pelicula.title}</h1>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
+            alt={pelicula.title}
+            className="movie-detail-image"
+          />
+          <p>{pelicula.overview}</p>
+          <div>
+            <h3>Comentarios:</h3>
+            <textarea
+              value={comentarios}
+              onChange={(e) => setComentarios(e.target.value)}
+              placeholder="Deja tu comentario..."
+            ></textarea>
+            <button onClick={handleComentario}>Comentar</button>
+            <div className="comentarios-list">
+              {comentariosList.map((comentario, index) => (
+                <p key={index}>{comentario}</p>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>Cargando detalles de la película...</p>
+      )}
     </div>
   );
 }
 
-//we export the component to be able to use
-//it in other parts of the application
 export default MovieDetails;
